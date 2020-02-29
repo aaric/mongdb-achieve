@@ -32,8 +32,8 @@ spring:
   data:
     # MongoDB
     mongodb:
-      host: cooggo.com
+      host: 127.0.0.1
       port: 27017
-      database: match
+      database: test
       username: admin
       password: admin
