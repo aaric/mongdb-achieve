@@ -1,13 +1,15 @@
-package com.github.aaric.achieve.mongdb;
+package com.github.aaric.mongdb;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Spring Boot Launcher.
  *
  * @author Aaric, created on 2018-05-09T12:03.
- * @since 0.0.1-SNAPSHOT
+ * @since 0.1.0-SNAPSHOT
  */
+@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
