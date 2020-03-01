@@ -31,4 +31,6 @@ public class UserInfo implements Serializable {
     @Indexed(direction = IndexDirection.ASCENDING)
     private String username;
     private String email;
+    private Integer age;
+    private Double salary;
 }
