@@ -1,6 +1,7 @@
 package com.github.aaric.mongdb.repository;
 
 import com.github.aaric.mongdb.entity.UserInfo;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +24,21 @@ public class UserInfoRepositoryTests {
     private UserInfoRepository userInfoRepository;
 
     @Test
+    @Ignore
     public void testSave() {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(1)
                 .setUsername("admin")
-                .setEmail("admin@163.com");
+                .setEmail("admin@163.com")
+                .setAge(18)
+                .setSalary(2000D);
         userInfoRepository.save(userInfo);
     }
 
     @Test
+    @Ignore
     public void testFindAll() {
         List<UserInfo> userInfoList = userInfoRepository.findAll();
         userInfoList.forEach(object -> System.out.println(object));
-
     }
 }

@@ -6,6 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
@@ -20,10 +23,14 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @Accessors(chain = true)
 @NoArgsConstructor
+@Document
 public class UserInfo implements Serializable {
 
     @Id
     private Integer id;
+    @Indexed(direction = IndexDirection.ASCENDING)
     private String username;
     private String email;
+    private Integer age;
+    private Double salary;
 }
