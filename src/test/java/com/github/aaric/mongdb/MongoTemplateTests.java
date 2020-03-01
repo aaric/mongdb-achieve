@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 /**
  * MongodbTests
  *
@@ -63,5 +65,20 @@ public class MongoTemplateTests {
     public void testRemove() {
         Query query = new Query(Criteria.where("id").is(9));
         mongoTemplate.remove(query, UserInfo.class);
+    }
+
+    @Test
+    @Ignore
+    public void testPage() {
+        Integer pageNum = 2;
+        Integer pageSize = 5;
+        Query query = new Query(Criteria.where("age").gt(18));
+
+        long count = mongoTemplate.count(query, UserInfo.class);
+        System.out.println(count);
+
+        query.skip((pageNum - 1) * pageSize).limit(pageSize);
+        List<UserInfo> userInfoList = mongoTemplate.find(query, UserInfo.class);
+        System.out.println(userInfoList.size());
     }
 }
