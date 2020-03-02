@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOptions;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.Fields;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -95,7 +97,7 @@ public class MongoTemplateTests {
     }
 
     @Test
-    public void testAggregate() {
+    public void testAggregateUserINfo() {
         Aggregation aggregation = Aggregation.newAggregation(
                 //Aggregation.group().sum("age").as("ageTotal")
                 Aggregation.group("username")
@@ -104,8 +106,34 @@ public class MongoTemplateTests {
         );
 
         AggregationResults<TotalResult> aggregationResults = mongoTemplate.aggregate(aggregation, "userInfo", TotalResult.class);
-
         Iterator<TotalResult> it = aggregationResults.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+
+    @Data
+    @Document
+    static class TripResult {
+        private String deviceId;
+        private Long tripId;
+        private Double distanceMax;
+    }
+
+    @Test
+    public void testAggregateDeviceData() {
+        AggregationOptions aggregationOptions = AggregationOptions.builder().allowDiskUse(true).build();
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.group(
+                        Fields.from(
+                                Fields.field("deviceId", "deviceId"),
+                                Fields.field("tripId", "tripId")
+                        )
+                ).max("distance").as("distanceMax")
+        ).withOptions(aggregationOptions);
+
+        AggregationResults<TripResult> aggregationResults = mongoTemplate.aggregate(aggregation, "deviceData", TripResult.class);
+        Iterator<TripResult> it = aggregationResults.iterator();
         while (it.hasNext()) {
             System.out.println(it.next());
         }
