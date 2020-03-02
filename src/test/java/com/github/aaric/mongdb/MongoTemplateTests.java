@@ -1,17 +1,22 @@
 package com.github.aaric.mongdb;
 
 import com.github.aaric.mongdb.entity.UserInfo;
+import lombok.Data;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -80,5 +85,29 @@ public class MongoTemplateTests {
         query.skip((pageNum - 1) * pageSize).limit(pageSize);
         List<UserInfo> userInfoList = mongoTemplate.find(query, UserInfo.class);
         System.out.println(userInfoList.size());
+    }
+
+    @Data
+    @Document
+    static class TotalResult {
+        private String username;
+        private Integer ageTotal;
+    }
+
+    @Test
+    public void testAggregate() {
+        Aggregation aggregation = Aggregation.newAggregation(
+                //Aggregation.group().sum("age").as("ageTotal")
+                Aggregation.group("username")
+                        .first("username").as("username")
+                        .sum("age").as("ageTotal")
+        );
+
+        AggregationResults<TotalResult> aggregationResults = mongoTemplate.aggregate(aggregation, "userInfo", TotalResult.class);
+
+        Iterator<TotalResult> it = aggregationResults.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 }
