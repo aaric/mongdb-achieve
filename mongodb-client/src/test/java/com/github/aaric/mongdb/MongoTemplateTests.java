@@ -2,9 +2,9 @@ package com.github.aaric.mongdb;
 
 import com.github.aaric.mongdb.entity.UserInfo;
 import lombok.Data;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,14 +28,14 @@ import java.util.List;
  * @since 0.1.0-SNAPSHOT
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class MongoTemplateTests {
 
     @Autowired
     private MongoTemplate mongoTemplate;
 
     @Test
-    @Ignore
+    @Disabled
     public void testSave() {
         UserInfo userInfo;
         for (int i = 0; i < 10; i++) {
@@ -50,7 +50,7 @@ public class MongoTemplateTests {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testFindOne() {
         Query query = new Query(Criteria.where("username").is("user1"));
         UserInfo userInfo = mongoTemplate.findOne(query, UserInfo.class);
@@ -58,7 +58,7 @@ public class MongoTemplateTests {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testUpdateFirst() {
         Query query = new Query(Criteria.where("id").is(0));
         Update update = new Update().set("username", "admin")
@@ -68,14 +68,14 @@ public class MongoTemplateTests {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testRemove() {
         Query query = new Query(Criteria.where("id").is(9));
         mongoTemplate.remove(query, UserInfo.class);
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testPage() {
         Integer pageNum = 2;
         Integer pageSize = 5;
