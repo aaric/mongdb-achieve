@@ -1,12 +1,12 @@
 package com.github.aaric.mongdb.repository;
 
 import com.github.aaric.mongdb.entity.UserInfo;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ import java.util.List;
  * @version 0.1.0-SNAPSHOT
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 public class UserInfoRepositoryTests {
 
     @Autowired
     private UserInfoRepository userInfoRepository;
 
     @Test
-    @Ignore
+    @Disabled
     public void testSave() {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(1)
@@ -36,7 +36,7 @@ public class UserInfoRepositoryTests {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testFindAll() {
         List<UserInfo> userInfoList = userInfoRepository.findAll();
         userInfoList.forEach(object -> System.out.println(object));

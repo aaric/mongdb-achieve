@@ -1,0 +1,15 @@
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+}
+
+bootRun {
+    enabled false
+}
+
+bootJar {
+    enabled false
+}
+
+jar {
+    enabled true
+}
