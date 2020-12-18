@@ -1,4 +1,4 @@
-package com.github.aaric.mongdb.entity;
+package com.sample.mongo.entity;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -7,3 +7,4 @@ pluginManagement {
 rootProject.name = "mongodb-achieve"
 
 include "mongodb-client"
+include "mongodb-client-complex"

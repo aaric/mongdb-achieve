@@ -1,6 +1,6 @@
-package com.github.aaric.mongdb.repository;
+package com.sample.mongo.repository;
 
-import com.github.aaric.mongdb.entity.UserInfo;
+import com.sample.mongo.entity.UserInfo;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +16,7 @@ import java.util.List;
  * @author Aaric, created on 2020-02-29T22:35.
  * @version 0.1.0-SNAPSHOT
  */
+@Disabled
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class UserInfoRepositoryTests {
@@ -24,7 +25,6 @@ public class UserInfoRepositoryTests {
     private UserInfoRepository userInfoRepository;
 
     @Test
-    @Disabled
     public void testSave() {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(1)
@@ -36,7 +36,6 @@ public class UserInfoRepositoryTests {
     }
 
     @Test
-    @Disabled
     public void testFindAll() {
         List<UserInfo> userInfoList = userInfoRepository.findAll();
         userInfoList.forEach(object -> System.out.println(object));

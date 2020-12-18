@@ -1,6 +1,6 @@
-package com.github.aaric.mongdb.repository;
+package com.sample.mongo.repository;
 
-import com.github.aaric.mongdb.entity.UserInfo;
+import com.sample.mongo.entity.UserInfo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

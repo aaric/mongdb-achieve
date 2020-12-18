@@ -1,6 +1,6 @@
-package com.github.aaric.mongdb;
+package com.sample.mongo;
 
-import com.github.aaric.mongdb.entity.UserInfo;
+import com.sample.mongo.entity.UserInfo;
 import lombok.Data;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -27,6 +27,7 @@ import java.util.List;
  * @author Aaric, created on 2018-05-09T12:00.
  * @since 0.1.0-SNAPSHOT
  */
+@Disabled
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class MongoTemplateTests {
@@ -35,7 +36,6 @@ public class MongoTemplateTests {
     private MongoTemplate mongoTemplate;
 
     @Test
-    @Disabled
     public void testSave() {
         UserInfo userInfo;
         for (int i = 0; i < 10; i++) {
@@ -50,7 +50,6 @@ public class MongoTemplateTests {
     }
 
     @Test
-    @Disabled
     public void testFindOne() {
         Query query = new Query(Criteria.where("username").is("user1"));
         UserInfo userInfo = mongoTemplate.findOne(query, UserInfo.class);
@@ -58,7 +57,6 @@ public class MongoTemplateTests {
     }
 
     @Test
-    @Disabled
     public void testUpdateFirst() {
         Query query = new Query(Criteria.where("id").is(0));
         Update update = new Update().set("username", "admin")
@@ -68,14 +66,12 @@ public class MongoTemplateTests {
     }
 
     @Test
-    @Disabled
     public void testRemove() {
         Query query = new Query(Criteria.where("id").is(9));
         mongoTemplate.remove(query, UserInfo.class);
     }
 
     @Test
-    @Disabled
     public void testPage() {
         Integer pageNum = 2;
         Integer pageSize = 5;
