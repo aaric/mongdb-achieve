@@ -1,5 +1,6 @@
 package com.sample.mongo.repository;
 
+import com.sample.mongo.TestApp;
 import com.sample.mongo.entity.UserInfo;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ import java.util.List;
  * @version 0.1.0-SNAPSHOT
  */
 @Disabled
-@SpringBootTest
+@SpringBootTest(classes = TestApp.class)
 @ExtendWith(SpringExtension.class)
 public class UserInfoRepositoryTests {
 

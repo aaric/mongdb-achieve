@@ -28,7 +28,7 @@ import java.util.List;
  * @since 0.1.0-SNAPSHOT
  */
 @Disabled
-@SpringBootTest
+@SpringBootTest(classes = TestApp.class)
 @ExtendWith(SpringExtension.class)
 public class MongoTemplateTests {
 

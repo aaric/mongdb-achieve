@@ -1,0 +1,31 @@
+# Logging settings
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      sample: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: output.log
+    max-size: ${LOGGING_FILE_MAX_SIZE:100MB}
+    max-history: ${LOGGING_FILE_MAX_HISTORY:50}
+
+# Spring settings
+spring:
+  profiles:
+    active: dev
+  application:
+    name: mongodb-client
+  data:
+    # MongoDB
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: test
+      #username: test
+      #password: test

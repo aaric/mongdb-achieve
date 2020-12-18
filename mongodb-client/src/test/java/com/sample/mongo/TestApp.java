@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * spring boot launcher.
  *
- * @author Aaric, created on 2018-05-09T12:03.
- * @since 0.1.0-SNAPSHOT
+ * @author Aaric, created on 2020-12-18T16:22.
+ * @version 0.3.0-SNAPSHOT
  */
 @SpringBootApplication
-public class Application {
+public class TestApp {
 
     /**
      * main
@@ -18,6 +18,6 @@ public class Application {
      * @param args custom inputs
      */
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(TestApp.class, args);
     }
 }
